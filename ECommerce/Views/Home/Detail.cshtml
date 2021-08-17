@@ -1,0 +1,72 @@
+﻿@model ECommerce.Models.MenuItemsViewModel
+@{
+    ViewData["Title"] = "Detail";
+}
+<link href="~/assets/counter/css/handle-counter.css" rel="stylesheet" />
+<script src="~/assets/counter/js/handleCounter.js"></script>
+<div class="row mt-5">
+    <div class="col-md-12">
+        <h3 class="text-center">Snowboard Product Detail</h3>
+        <hr />
+    </div>
+</div>
+<div class="row d-flex justify-content-center">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card shadow p-3 mb-5 bg-white rounded">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img src="@Html.DisplayFor(model => model.imageurl)" class="img img-thumbnail" />
+                            </div>
+                            <div class="col-md-9">
+                                @{ string description = Model.Description;}
+                                <h3 class="card-title text-danger">@Html.DisplayFor(model => model.ItemName)</h3>
+                                <p class="card-text"><blockquote class="mutedTexted truncate">@Html.Raw(description)</blockquote></p>
+                                <h4 class="text-danger">$ <span id="lblPrice">@Html.DisplayFor(model => model.Price)</span></h4> <br />
+                                <input type="hidden" id="txtPrice" value="@Model.Price" />
+                                <form action="/Home/Order" method="post">
+                                    <div class="handle-counter" id="handleCounter">
+                                        <button type="button" class="counter-minus btn btn-danger">-</button>
+                                        <input id="txtQuantity" name="Quantity" type="text" value="1">
+                                        <button type="button" class="counter-plus btn btn-danger">+</button>
+                                    </div>
+                                    <input type="hidden" name="Id" id="txtId" value="@Model.Id" />
+                                    <br>
+                                    <button type="submit" class="btn btn-danger"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to cart</button>
+                                    @*<a href="/Home/Order?Id=@Model.Id" class="btn btn-danger">Add to Bucket</a>*@
+                                    @*<button class="btn btn-outline-danger" disabled="disabled">Add to Bucket</button>*@
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function ($) {
+        var options = {
+            minimum: 1,
+            maximize: 100,
+            onChange: valChanged,
+            onMinimum: function (e) {
+                console.log('reached minimum: ' + e)
+            },
+            onMaximize: function (e) {
+                console.log('reached maximize' + e)
+            }
+        }
+        $('#handleCounter').handleCounter(options)
+    })
+    function valChanged(d) {
+        var price = $("#txtPrice").val();
+        price = parseFloat(price) * d;
+        $("#lblPrice").text(price);
+        //            console.log(d)
+    }
+</script>
+

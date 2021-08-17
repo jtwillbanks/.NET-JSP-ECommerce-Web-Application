@@ -1,0 +1,66 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@{ var _news = (List<ECommerce.Models.Newsletter>)ViewBag.Newsletters;}
+@if (_news.Any())
+{
+    <div class="row mt-3">
+        <div class="col-md-12">
+
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" onclick="this.parentNode.parentNode.removeChild(this.parentNode);" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <marquee>
+                    <p>
+                        @foreach (var item in _news)
+                        {
+                            <span class="badge badge-warning">New</span> <span class="text-danger">@item.NewsLetter <span>(@item.NewsLetterDate)</span></span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+                        }
+                    </p>
+                </marquee>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row mt-5">
+    <div class="col-md-12">
+        <h3 class="text-center">Feature Products</h3>
+        <hr />
+    </div>
+    <div class="row grid">
+        @{ var list = (List<ECommerce.Models.MenuItemsViewModel>)ViewBag.BakeryItems;}
+        @if (list.Any())
+        {
+            foreach (var item in list)
+            {
+                <div class="col-md-6">
+                    <div class="card shadow p-3 mb-5 bg-white rounded">
+                        <div class="card-body">
+                            <div class="media">
+                                <img src="@item.imageurl" class="align-self-start mr-3 img img-thumbnail" style="width:60px">
+                                <div class="media-body">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <a href="/Home/Detail?Id=@item.Id" class="text-danger"><h4 class="card-title">@item.ItemName</h4></a>
+                                        </div>
+                                        <div class="col-md-4 text-right">
+                                            <h4 class="card-title text-danger">$@item.Price</h4>
+                                        </div>
+                                    </div>
+                                    <blockquote class="text-muted truncate">
+                                        @Html.Raw(item.Description)
+                                    </blockquote>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+
+</div>
+

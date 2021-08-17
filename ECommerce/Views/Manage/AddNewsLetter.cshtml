@@ -1,0 +1,38 @@
+﻿@model ECommerce.Models.Newsletter
+
+@{
+    ViewData["Title"] = "AddNewsLetter";
+}
+
+<script src="~/Plugins/Newsletter.js"></script>
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <div class="card shadow p-3 mb-5 bg-white rounded">
+            <div class="card-body">
+                <h4 class="card-title">@ViewBag.message</h4>
+                <hr />
+                <form asp-action="AddUpdateNewsLetter" asp-controller="Manage" data-ajax="true" data-ajax-method="POST" data-ajax-success="Newsletter.initSuccess">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" class="form-control" />
+                    <div class="form-group">
+                        <label asp-for="NewsLetter" class="control-label"></label>
+                        <textarea asp-for="NewsLetter" class="form-control"></textarea>
+                        <span asp-validation-for="NewsLetter" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-outline-danger" />
+                        <a href="/Manage/Newsletter" class="btn btn-outline-secondary">Back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

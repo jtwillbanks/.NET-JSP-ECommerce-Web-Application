@@ -1,0 +1,89 @@
+﻿@model IEnumerable<ECommerce.Models.Newsletter>
+
+@{
+    ViewData["Title"] = "Newsletter";
+}
+<script src="~/Plugins/Newsletter.js"></script>
+
+
+<div class="row mt-3">
+    <div class="col-md-12">
+        <div class="card shadow p-3 mb-5 bg-white rounded">
+            <div class="card-body">
+                <h4 class="card-title">NEWSLETTERS</h4>
+                <hr />
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <a href="/Manage/AddNewsLetter" class="btn btn-outline-danger">Add New</a>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <table class="table table-bordered table-hover" id="tblItems">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        #
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.NewsLetter)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.NewsLetterDate)
+                                    </th>
+                                    <th>Actions</th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                @{ int i = 0; }
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @(i = i + 1)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NewsLetter)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NewsLetterDate)
+                                        </td>
+                                        <td>
+                                            <a href="/Manage/EditNewsletter?Id=@item.Id" class="text-danger" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></a> |
+                                            <a href="Javascript:void(0);" onclick="Newsletter.initDeleteNewsletter('@item.Id');" class="text-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    $(function () {
+        $("#tblItems").DataTable({
+            destroy: true,
+            aaSorting: [],
+            "ordering": false,
+            "bSort": false,
+            "bSortable": false,
+            "orderable": false,
+            "columnDefs": [{ "width": "10%", "targets": 0 }]
+        });
+    });
+</script>
+
+
+
+
+
+
