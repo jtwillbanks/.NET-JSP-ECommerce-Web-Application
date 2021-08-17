@@ -20,5 +20,5 @@ Continually, the role and user ID’s and passwords were generated with a hash v
 - Developed by Jacob Willbanks for CIT 450 at California Baptist University
 - Learning Materials: Murach's ASP.NET 4.6 Web Programming with C# 2015 6th Edition and https://www.tutorialspoint.com/index.htm (AJAX and JSON)
 - This application was developed in Visual Studio 2019 which is required for certain NuGet packages and ASP.NET 3.0 support.
-- To connect your own database through the application by adjusting the connection string in “appsettings.json” and running the “Update-database” command in the package manager console.
+- To connect your own database through the application you can adjust the connection string in “appsettings.json” and run the “Update-database” command in the package manager console.
 
