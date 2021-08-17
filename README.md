@@ -14,6 +14,11 @@ Continually, the role and user ID’s and passwords were generated with a hash v
 - Users have access to the landing, store, cart, and orders pages and their functionalities
 - Admins have access to all user functionality as well as the “Manage” tab.
 ### Example (Admin Perspective/Manage Functionality)
+![docimg8](https://user-images.githubusercontent.com/89053058/129656475-44824c4c-a17c-4480-93fe-72131660d320.png)
 
-
+# Considerations
+- Developed by Jacob Willbanks for CIT 450 at California Baptist University
+- Learning Materials: Murach's ASP.NET 4.6 Web Programming with C# 2015 6th Edition and https://www.tutorialspoint.com/index.htm (AJAX and JSON)
+- This application was developed in Visual Studio 2019 which is required for certain NuGet packages and ASP.NET 3.0 support.
+- To connect your own database through the application by adjusting the connection string in “appsettings.json” and running the “Update-database” command in the package manager console.
 
